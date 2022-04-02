@@ -5,23 +5,23 @@ const router = new Router({ prefix: '/proxy' });
 
 
 router.get("/", async (ctx) => {
-  // const { shop, accessToken } = ACTIVE_SHOPIFY_SHOPS
-  // const client = createClient(shop, accessToken)
 
-  ctx.res.setHeader('Content-Type', 'application/liquid')
-  await send(ctx, "client-storefront/build/index.html")
+  // ctx.res.setHeader('Content-Type', 'application/liquid')
+  // await send(ctx, "client-storefront/build/index.html")
+
+  console.log("endpoint hit")
   ctx.res.statusCode = 200;
 });
 
 
 router.get('/static/css/:file', async (ctx) => {
-  ctx.res.setHeader('Content-Type', 'text/css')
-  await send(ctx, `client-storefront/build/static/css/${ctx.params.file}`)
+  // ctx.res.setHeader('Content-Type', 'text/css')
+  // await send(ctx, `client-storefront/build/static/css/${ctx.params.file}`)
 });
 
 router.get('/static/js/:file', async (ctx) => {
-  ctx.res.setHeader('Content-Type', 'text/javascript')
-  await send(ctx, `client-storefront/build/static/js/${ctx.params.file}`)
+  // ctx.res.setHeader('Content-Type', 'text/javascript')
+  // await send(ctx, `client-storefront/build/static/js/${ctx.params.file}`)
 });
 
 module.exports = router

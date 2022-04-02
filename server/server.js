@@ -6,9 +6,12 @@ import Shopify, { ApiVersion } from "@shopify/shopify-api";
 import Koa from "koa";
 import next from "next";
 import Router from "koa-router";
+const bodyParser = require('koa-bodyparser')
+const cors = require('@koa/cors')
+
 const { connectDB, saveOrUpdateShop } = require('../config/db')
 
-const proxyRoutes = require('./routes/proxy-routes')
+const combinedRoutes = require('./routes/index.js')
 
 
 dotenv.config();
@@ -109,8 +112,9 @@ app.prepare().then(async () => {
     }
   });
 
-  server.use(proxyRoutes.routes())
-  server.use(proxyRoutes.allowedMethods());
+  server.use(cors())
+  server.use(bodyParser())
+  server.use(combinedRoutes())
 
   server.use(router.allowedMethods());
   server.use(router.routes());
